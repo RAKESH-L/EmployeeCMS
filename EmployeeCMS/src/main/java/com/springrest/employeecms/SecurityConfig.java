@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.passwordEncoder(getPasswordEncoder())
 			.withUser("rakesh@gmail.com").password(getPasswordEncoder().encode("rakesh@12")).authorities("EMPLOYEE")
 			.and()
-			.withUser("shrung@gmail.com").password(getPasswordEncoder().encode("shrunga@12")).authorities("MANAGER")
+			.withUser("shrunga@gmail.com").password(getPasswordEncoder().encode("shrunga@12")).authorities("MANAGER")
 			.and()
 			.withUser("yashas@gmail.com").password(getPasswordEncoder().encode("yashas@12")).authorities("EMPLOYEE");
 			
