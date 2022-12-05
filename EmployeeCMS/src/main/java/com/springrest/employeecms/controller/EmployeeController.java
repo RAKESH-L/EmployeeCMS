@@ -49,6 +49,7 @@ public class EmployeeController {
 		
 		employee.setManager(manager);
 		employee.setCreatedAt(LocalDate.now());
+		employee.setTotalLeaves(20);
 		
 		User user = employee.getUser();
 		user.setRole("EMPLOYEE");

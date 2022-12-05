@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.passwordEncoder(getPasswordEncoder())
 			.withUser("rakesh@gmail.com").password(getPasswordEncoder().encode("rakesh@12")).authorities("EMPLOYEE")
 			.and()
-			.withUser("shrunga@gmail.com").password(getPasswordEncoder().encode("shrunga@12")).authorities("MANAGER")
+			.withUser("lokesh@gmail.com").password(getPasswordEncoder().encode("lokesh@12")).authorities("MANAGER")
 			.and()
 			.withUser("yashas@gmail.com").password(getPasswordEncoder().encode("yashas@12")).authorities("EMPLOYEE");
 			
@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,"/api/manager/auth/role/hello").hasAuthority("MANAGER")
 		.antMatchers(HttpMethod.PUT,"/api/employee/status/{status}/{id}").hasAuthority("MANAGER")
 		.antMatchers(HttpMethod.GET,"/api/user/login").authenticated()
+		.antMatchers(HttpMethod.POST,"/api/leave/add").hasAuthority("EMPLOYEE")
 		.anyRequest().permitAll()
 		.and()
 		.httpBasic()

@@ -24,6 +24,8 @@ public class Employee {
     private String jobTitle;
     private LocalDate createdAt;
     
+    private int totalLeaves;
+    
     @Enumerated(EnumType.STRING)
     private EmployeeAccessStatusEnum accessType;
 	
@@ -87,6 +89,17 @@ public class Employee {
 
 	public void setManager(Manager manager) {
 		this.manager = manager;
+	}
+	
+	
+	
+
+	public int getTotalLeaves() {
+		return totalLeaves;
+	}
+
+	public void setTotalLeaves(int totalLeaves) {
+		this.totalLeaves = totalLeaves;
 	}
 
 	@Override

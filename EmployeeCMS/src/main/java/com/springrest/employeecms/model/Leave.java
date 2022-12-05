@@ -3,11 +3,15 @@ package com.springrest.employeecms.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.springrest.employeecms.enums.LeaveStatusEnum;
 
 @Entity
 @Table(name = "leave_details")
@@ -22,6 +26,9 @@ public class Leave {
 	private LocalDate toDate;
 	
 	private int numDays;
+	
+	@Enumerated(EnumType.STRING)
+	private LeaveStatusEnum leaveStatus;
 	
 	@ManyToOne
 	private Employee employee;
@@ -64,6 +71,16 @@ public class Leave {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	
+
+	public LeaveStatusEnum getLeaveStatus() {
+		return leaveStatus;
+	}
+
+	public void setLeaveStatus(LeaveStatusEnum leaveStatus) {
+		this.leaveStatus = leaveStatus;
 	}
 
 	@Override

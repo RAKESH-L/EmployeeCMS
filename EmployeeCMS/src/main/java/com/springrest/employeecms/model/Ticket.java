@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.springrest.employeecms.enums.TicketPriorityEnum;
+import com.springrest.employeecms.enums.TicketStateEnum;
 
 @Entity
 public class Ticket {
@@ -23,6 +24,9 @@ public class Ticket {
 	
 	@Enumerated(EnumType.STRING)
 	private TicketPriorityEnum priority;
+	
+	@Enumerated(EnumType.STRING)
+	private TicketStateEnum stateEnum;
 	
 	@ManyToOne
 	private Employee employee;
@@ -57,6 +61,16 @@ public class Ticket {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	
+
+	public TicketStateEnum getStateEnum() {
+		return stateEnum;
+	}
+
+	public void setStateEnum(TicketStateEnum stateEnum) {
+		this.stateEnum = stateEnum;
 	}
 
 	@Override
