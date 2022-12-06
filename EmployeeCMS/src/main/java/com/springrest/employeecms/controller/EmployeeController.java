@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springrest.employeecms.dto.MessageDto;
 import com.springrest.employeecms.enums.EmployeeAccessStatusEnum;
 import com.springrest.employeecms.model.Employee;
 import com.springrest.employeecms.model.Manager;
@@ -24,6 +26,7 @@ import com.springrest.employeecms.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/employee")
+@CrossOrigin(origins = "http://localhost:8631/")
 public class EmployeeController {
 
 	@Autowired
@@ -39,11 +42,11 @@ public class EmployeeController {
 	private EmployeeRepository employeeRepository;
 	
 	@PostMapping("/add/{id}")
-	public ResponseEntity<String> addEmployee(@PathVariable("id") Long managerId,
+	public ResponseEntity<MessageDto> addEmployee(@PathVariable("id") Long managerId,
 												@RequestBody Employee employee){
 		Optional<Manager> optional = managerRepository.findById(managerId);
 		if(!optional.isPresent())
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Manager ID is Invalid");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageDto("Manager ID is Invalid"));
 		
 		Manager manager = optional.get();
 		
@@ -63,7 +66,7 @@ public class EmployeeController {
 		
 		employeeRepository.save(employee);
 		
-		return ResponseEntity.status(HttpStatus.OK).body("Employee Sign up Success");
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageDto("Employee Sign up Success"));
 	}
 	
 	@PutMapping("/status/{status}/{id}")
